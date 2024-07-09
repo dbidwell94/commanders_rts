@@ -1,0 +1,8 @@
+[package]
+name = "commanders_bin"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = { workspace = true }
+main_menu = { path = "../main_menu" }

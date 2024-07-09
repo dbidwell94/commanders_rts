@@ -1,0 +1,14 @@
+[package]
+name = "commanders_rts"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = ["workspaces/commanders_bin", "workspaces/main_menu", "workspaces/ui_lib"]
+resolver = "2"
+
+[workspace.dependencies]
+bevy = { version = "0.14" }
+
+[dependencies]
+commanders_bin = { path = "./workspaces/commanders_bin" }
