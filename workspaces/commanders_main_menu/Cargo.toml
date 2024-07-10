@@ -1,8 +1,10 @@
 [package]
-name = "ui_lib"
+name = "commanders_main_menu"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 bevy = { workspace = true }
+commanders_global = { path = "../commanders_global" }
+ui_lib = { path = "../ui_lib" }
 bevy-ui-dsl = { workspace = true }

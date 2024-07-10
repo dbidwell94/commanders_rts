@@ -5,4 +5,6 @@ edition = "2021"
 
 [dependencies]
 bevy = { workspace = true }
-main_menu = { path = "../main_menu" }
+bevy_asset_loader = { workspace = true }
+commanders_main_menu = { path = "../commanders_main_menu" }
+commanders_global = { path = "../commanders_global" }
