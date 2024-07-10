@@ -1,3 +1,4 @@
+mod dropdown_menu;
 use bevy::prelude::*;
 
 /// Display: Flex centered on screen
@@ -13,18 +14,8 @@ pub fn root_full_screen(
             flex_direction: FlexDirection::Column,
             justify_content: justify.unwrap_or(JustifyContent::Center),
             align_items: align.unwrap_or(AlignItems::Center),
-            // todo: remove this. This is a debug placeholder to view the layout
-            border: UiRect {
-                bottom: Val::Px(5.),
-                top: Val::Px(5.),
-                left: Val::Px(5.),
-                right: Val::Px(5.),
-            },
             ..default()
         };
-
-        // todo: remove this. This is a debug placeholder to view the layout
-        node.border_color = BorderColor(Color::WHITE);
     }
 }
 
