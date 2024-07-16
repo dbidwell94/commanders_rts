@@ -9,7 +9,7 @@ members = ["workspaces/*"]
 resolver = "2"
 
 [workspace.dependencies]
-bevy = { version = "0.14", features = ["wayland"] }
+bevy = { version = "0.14", features = ["wayland", "bevy_dev_tools"] }
 serde = { version = "1", features = ["derive"] }
 bevy_asset_loader = { version = "0.21" }
 bevy-ui-dsl = { version = "0.9" }

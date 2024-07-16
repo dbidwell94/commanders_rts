@@ -1,9 +1,10 @@
 use bevy::prelude::*;
+use commanders_global::game_state::GameState;
 
-#[derive(States, Clone, Eq, PartialEq, Debug, Default, Hash)]
+#[derive(SubStates, Clone, Eq, PartialEq, Debug, Default, Hash)]
+#[source(GameState = GameState::MainMenu)]
 pub enum MenuState {
     #[default]
-    None,
     MainMenu,
     NewGame,
     LoadGame,

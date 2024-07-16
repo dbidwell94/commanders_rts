@@ -7,17 +7,13 @@ use ui_lib::padded_button_bundle;
 pub fn add_options_systems(app: &mut App) {
     app.add_systems(
         OnEnter(MenuState::Options),
-        build_options_menu.run_if(in_state(GameState::MainMenu)),
+        build_options_menu.run_if(in_state(MenuState::Options)),
     )
     .add_systems(
         Update,
         (handle_interactions)
             .run_if(in_state(MenuState::Options))
             .run_if(in_state(GameState::MainMenu)),
-    )
-    .add_systems(
-        OnExit(MenuState::Options),
-        destory_options_menu.run_if(in_state(GameState::MainMenu)),
     );
 }
 
@@ -39,7 +35,10 @@ fn build_options_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
 
     let back = back.expect("Expected entity to be defined");
 
-    commands.entity(root_entity).insert(SettingsUI);
+    commands
+        .entity(root_entity)
+        .insert((SettingsUI, StateScoped(MenuState::Options)));
+
     commands.entity(back).insert((ButtonAnimation, BackButton));
     commands
         .entity(back)

@@ -5,20 +5,21 @@ use commanders_global::{components, game_state::GameState};
 use ui_lib::{node_with_padding, padded_button_bundle, root_full_screen};
 
 pub fn add_main_menu_systems(app: &mut App) {
-    app.add_systems(
-        OnEnter(MenuState::MainMenu),
-        build_main_menu.run_if(in_state(GameState::MainMenu)),
-    )
-    .add_systems(
-        Update,
-        (handle_button_interaction)
-            .run_if(in_state(GameState::MainMenu))
-            .run_if(in_state(MenuState::MainMenu)),
-    )
-    .add_systems(
-        OnExit(MenuState::MainMenu),
-        destroy_main_menu.run_if(in_state(GameState::MainMenu)),
-    );
+    app.add_plugins(bevy::dev_tools::ui_debug_overlay::DebugUiPlugin)
+        .add_systems(
+            OnEnter(MenuState::MainMenu),
+            build_main_menu.run_if(in_state(GameState::MainMenu)),
+        )
+        .add_systems(
+            Update,
+            (handle_button_interaction)
+                .run_if(in_state(GameState::MainMenu))
+                .run_if(in_state(MenuState::MainMenu)),
+        )
+        .add_systems(
+            OnExit(MenuState::MainMenu),
+            destroy_main_menu.run_if(in_state(GameState::MainMenu)),
+        );
 }
 
 components!(
@@ -30,7 +31,16 @@ components!(
     MainMenuUI
 );
 
-fn build_main_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
+fn build_main_menu(
+    mut commands: Commands,
+    asset_server: Res<AssetServer>,
+    camera_query: Query<Entity, With<Camera>>,
+) {
+    // create camera if it does not exist
+    if camera_query.iter().count() == 0 {
+        commands.spawn(Camera3dBundle::default());
+    }
+
     let mut new_game = None;
     let mut load_game = None;
     let mut multiplayer = None;
@@ -83,7 +93,9 @@ fn build_main_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
 
     commands.entity(exit).insert((ExitButton, ButtonAnimation));
 
-    commands.entity(root_entity).insert(MainMenuUI);
+    commands
+        .entity(root_entity)
+        .insert((MainMenuUI, StateScoped(MenuState::MainMenu)));
 }
 
 fn handle_button_interaction(
