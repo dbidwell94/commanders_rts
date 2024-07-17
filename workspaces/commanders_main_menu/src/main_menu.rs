@@ -1,4 +1,4 @@
-use crate::{state::MenuState, ButtonAnimation, NextStateValue};
+use crate::{state::MenuState, ButtonAnimation, NextStateValue, UiCamera};
 use bevy::prelude::*;
 use bevy_ui_dsl::*;
 use commanders_global::{components, game_state::GameState};
@@ -34,11 +34,15 @@ components!(
 fn build_main_menu(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
-    camera_query: Query<Entity, With<Camera>>,
+    camera_query: Query<Entity, With<UiCamera>>,
 ) {
     // create camera if it does not exist
     if camera_query.iter().count() == 0 {
-        commands.spawn(Camera3dBundle::default());
+        commands.spawn((
+            Camera3dBundle::default(),
+            UiCamera,
+            StateScoped(GameState::MainMenu),
+        ));
     }
 
     let mut new_game = None;

@@ -3,7 +3,6 @@ mod options;
 mod state;
 
 use bevy::prelude::*;
-use commanders_global::game_state::GameState;
 use state::MenuState;
 
 pub struct MainMenuPlugin;

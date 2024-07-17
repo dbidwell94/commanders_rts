@@ -78,9 +78,3 @@ fn handle_interactions(
         }
     }
 }
-
-fn destory_options_menu(mut commands: Commands, query: Query<Entity, With<SettingsUI>>) {
-    for entity in query.iter() {
-        commands.entity(entity).despawn_recursive();
-    }
-}
