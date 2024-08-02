@@ -18,16 +18,6 @@ bevy-ui-dsl = { version = "0.9" }
 commanders_bin = { path = "./workspaces/commanders_bin" }
 
 
-# for Linux
-[target.x86_64-unknown-linux-gnu]
-linker = "clang"
-rustflags = ["-C", "link-arg=-fuse-ld=lld"]
-
-# for Windows
-[target.x86_64-pc-windows-msvc]
-linker = "rust-lld.exe"
-
-
 [profile.release]
 codegen-units = 1
 lto = "thin"
