@@ -3,7 +3,7 @@ use bevy::prelude::*;
 pub mod game_state;
 
 #[macro_export]
-macro_rules! components {
+macro_rules! component_markers {
     ($($name:ident),*) => {
         $(
             #[derive(Component)]

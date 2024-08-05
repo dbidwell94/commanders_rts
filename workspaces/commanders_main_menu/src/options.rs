@@ -1,7 +1,7 @@
 use crate::{state::MenuState, ButtonAnimation, NextStateValue};
 use bevy::prelude::*;
 use bevy_ui_dsl::*;
-use commanders_global::{components, game_state::GameState};
+use commanders_global::{component_markers, game_state::GameState};
 use ui_lib::padded_button_bundle;
 
 pub fn add_options_systems(app: &mut App) {
@@ -17,7 +17,7 @@ pub fn add_options_systems(app: &mut App) {
     );
 }
 
-components!(BackButton, SettingsUI);
+component_markers!(BackButton, SettingsUI);
 
 fn build_options_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
     let mut back = None;

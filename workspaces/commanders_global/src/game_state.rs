@@ -5,4 +5,6 @@ pub enum GameState {
     #[default]
     InitialLoad,
     MainMenu,
+    SinglePlayer,
+    MultiPlayer,
 }

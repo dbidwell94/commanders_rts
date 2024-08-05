@@ -1,7 +1,7 @@
 use crate::{state::MenuState, ButtonAnimation, NextStateValue, UiCamera};
 use bevy::prelude::*;
 use bevy_ui_dsl::*;
-use commanders_global::{components, game_state::GameState};
+use commanders_global::{component_markers, game_state::GameState};
 use ui_lib::{node_with_padding, padded_button_bundle, root_full_screen};
 
 pub fn add_main_menu_systems(app: &mut App) {
@@ -22,7 +22,7 @@ pub fn add_main_menu_systems(app: &mut App) {
         );
 }
 
-components!(
+component_markers!(
     NewGameButton,
     LoadGameButton,
     MultiplayerButton,
